@@ -1,4 +1,5 @@
-﻿using ResteurantApi.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using ResteurantApi.Entities;
 using ResteurantApi.Models;
 
 namespace ResteurantApi.Services
@@ -11,9 +12,11 @@ namespace ResteurantApi.Services
     public class AccountService : IAccountService
     {
         private readonly ResteurantDBContext _dbContext;
-        public AccountService(ResteurantDBContext dbContext)
+        private readonly IPasswordHasher<User> _passwordHasher;
+        public AccountService(ResteurantDBContext dbContext, IPasswordHasher<User> passwordHasher)
         {
             _dbContext = dbContext;
+            _passwordHasher = passwordHasher;
         }
 
         public void RegisterUser(RegisterUserDto dto)
@@ -25,7 +28,11 @@ namespace ResteurantApi.Services
                 Nationality = dto.Nationality,
                 RoleId = dto.RoleId
             };
+            //hashoowanie hasła
 
+            var hashedPassword = _passwordHasher.HashPassword(newUser, dto.Password);
+
+            newUser.PasswordHash = hashedPassword;
             _dbContext.User.Add(newUser);
             _dbContext.SaveChanges();
 

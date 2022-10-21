@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using ResteurantApi.Middleware;
 
 namespace ResteurantApi
@@ -43,6 +44,8 @@ namespace ResteurantApi
             //implemetnacja obslugi wyjatkow
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<RequestTimeMiddleware>();
+            //implemetnacja hashera hasel dla uzytkownika
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             //dodanie swaggera
             services.AddSwaggerGen();
             
