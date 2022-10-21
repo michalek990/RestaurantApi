@@ -1,0 +1,16 @@
+2022-10-20 20:30:37.4050 Info Message Template Auto Format enabled
+2022-10-20 20:30:37.4115 Info Loading assembly: NLog.Web.AspNetCore
+2022-10-20 20:30:37.4311 Info Adding target FileTarget(Name=allfile)
+2022-10-20 20:30:37.4311 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'errorFile-web' not found for logging rule: *.
+2022-10-20 20:30:37.4311 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'otherFile-web' not found for logging rule: *.
+2022-10-20 20:30:37.4542 Info Validating config: TargetNames=allfile, ConfigItems=16, FilePath=C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\bin\Debug\net5.0\NLog.config
+2022-10-20 20:30:37.4658 Info Configuration initialized.
+2022-10-20 20:30:37.4658 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.9.12899. Product version: 4.7.9+e8712e62842e2d74d60fdf37cf74d743750e5ca2. GlobalAssemblyCache: False
+2022-10-20 20:35:17.2734 Info Message Template Auto Format enabled
+2022-10-20 20:35:17.2734 Info Loading assembly: NLog.Web.AspNetCore
+2022-10-20 20:35:17.3028 Info Adding target FileTarget(Name=allfile)
+2022-10-20 20:35:17.3028 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'errorFile-web' not found for logging rule: *.
+2022-10-20 20:35:17.3028 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'otherFile-web' not found for logging rule: *.
+2022-10-20 20:35:17.3228 Info Validating config: TargetNames=allfile, ConfigItems=16, FilePath=C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\bin\Debug\net5.0\NLog.config
+2022-10-20 20:35:17.3228 Info Configuration initialized.
+2022-10-20 20:35:17.3228 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.9.12899. Product version: 4.7.9+e8712e62842e2d74d60fdf37cf74d743750e5ca2. GlobalAssemblyCache: False
