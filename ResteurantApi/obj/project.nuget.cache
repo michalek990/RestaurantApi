@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "G6dZnjDsolT2gzd6/skRHJVbUVrzz3tDwZLL9065jUkKFThLIqVKPLqdOP+L5k4ONd7X1EEWfECv07qaEmvf8g==",
+  "dgSpecHash": "gfiVMlKJqE74s0JTy+Um7GfJTvEai5ZVVaA2rDESmjg6Lf5zhybKhqBY7KxnUVxg178qI4m1aVAWMtyas3lJ0w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Michal\\source\\repos\\ResteurantAPI\\ResteurantApi\\ResteurantApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Michal\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\Michal\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",
+    "C:\\Users\\Michal\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.6\\fluentvalidation.dependencyinjectionextensions.10.3.6.nupkg.sha512",
     "C:\\Users\\Michal\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Michal\\.nuget\\packages\\jetbrains.resharper.commandlinetools\\2021.3.1\\jetbrains.resharper.commandlinetools.2021.3.1.nupkg.sha512",
     "C:\\Users\\Michal\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

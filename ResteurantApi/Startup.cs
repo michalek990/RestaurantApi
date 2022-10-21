@@ -11,8 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using ResteurantApi.Middleware;
+using ResteurantApi.Models;
+using ResteurantApi.Models.Validators;
 
 namespace ResteurantApi
 {
@@ -29,8 +33,8 @@ namespace ResteurantApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            //u¿ywanie kontrolerów
-            services.AddControllers();
+            //u¿ywanie kontrolerów oraz dodanie implementacji bibloteki walidatora
+            services.AddControllers().AddFluentValidation();
             //implementacja bazy danych
             services.AddDbContext<ResteurantDBContext>();
             //zaplenienie bazzy danych danymi
@@ -46,6 +50,8 @@ namespace ResteurantApi
             services.AddScoped<RequestTimeMiddleware>();
             //implemetnacja hashera hasel dla uzytkownika
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            //implemenacja walidatora sprawdzajacego uzytkownika podczas rejestracji
+            services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             //dodanie swaggera
             services.AddSwaggerGen();
             
