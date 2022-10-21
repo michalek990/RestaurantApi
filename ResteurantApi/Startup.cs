@@ -39,6 +39,7 @@ namespace ResteurantApi
             //implementacja serwisu
             services.AddScoped<IResteurantService, ResteurantService>();
             services.AddScoped<IDishService, DishService>();
+            services.AddScoped<IAccountService, AccountService>();
             //implemetnacja obslugi wyjatkow
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<RequestTimeMiddleware>();

@@ -13,8 +13,22 @@ namespace ResteurantApi.Entities
         public DbSet<Address> Address { get; set; }
         public DbSet<Dish> Dishes { get; set; }
 
+        public DbSet<Role> Role { get; set; }
+
+        public DbSet<User> User { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<User>()
+                .Property(u => u.Email)
+                .IsRequired();
+
+            modelBuilder.Entity<Role>()
+                .Property(u => u.Name)
+                .IsRequired();
+
+
             //konfiguracja encji
             modelBuilder.Entity<Resteurant>()
                 .Property(r => r.Name)

@@ -31,7 +31,6 @@ namespace ResteurantApi.Services
         public int Create(int resteurantId, CreateDishDto dto)
         {
             var resteurant = GetResteurantById(resteurantId);
-
             var dishEntity = _mapper.Map<Dish>(dto);
 
             //ustalamy id resteuracji dla konkretnego id dania
@@ -60,9 +59,6 @@ namespace ResteurantApi.Services
         public List<DishDto> GetAll(int resteurantId)
         {
             var resteurant = GetResteurantById(resteurantId);
-
-            
-
             var dishDto = _mapper.Map<List<DishDto>>(resteurant.Dishes);
             return dishDto;
         }
@@ -70,9 +66,7 @@ namespace ResteurantApi.Services
         public void DeleteAll(int resteurantId)
         {
             var resteurant = GetResteurantById(resteurantId);
-            
-
-           _context.RemoveRange(resteurant.Dishes);
+            _context.RemoveRange(resteurant.Dishes);
            _context.SaveChanges();
 
             
@@ -85,10 +79,8 @@ namespace ResteurantApi.Services
                 .Include(r => r.Dishes)//chcemy dla danej resteuracji pokazac jej dania
                 .FirstOrDefault(r => r.Id == resteurantId);
 
-            if (resteurant == null)
-            {
-                throw new NotFoundException("Resteurant not found");
-            }
+            if (resteurant is null)
+                throw new NotFoundException("Restaurant not found");
 
             return resteurant;
         }

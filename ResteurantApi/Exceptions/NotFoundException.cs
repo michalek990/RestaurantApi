@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ResteurantApi.Exceptions
 {
@@ -6,7 +10,7 @@ namespace ResteurantApi.Exceptions
     {
         public NotFoundException(string message) : base(message)
         {
-            
+
         }
     }
 }
