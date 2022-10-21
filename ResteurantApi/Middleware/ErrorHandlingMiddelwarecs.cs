@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using ResteurantApi.Exceptions;
+
 
 namespace ResteurantApi.Middleware
 {
@@ -20,7 +24,6 @@ namespace ResteurantApi.Middleware
             {
                 await next.Invoke(context);
             }
-            
             catch (NotFoundException notFoundException)
             {
                 context.Response.StatusCode = 404;

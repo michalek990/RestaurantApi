@@ -20,6 +20,13 @@ namespace ResteurantApi
             //srapwdzamy polaczenie do bazy danych
             if (_dBContext.Database.CanConnect())
             {
+                if (!_dBContext.Role.Any())
+                {
+                    var roles = GetRoles();
+                    _dBContext.Role.AddRange(roles);
+                    _dBContext.SaveChanges();
+                }
+
                 if (!_dBContext.Resteurants.Any())
                 {
                     var resteurants = GetResteurants();
@@ -30,6 +37,27 @@ namespace ResteurantApi
                 }
             }
         }
+
+        private IEnumerable<Role> GetRoles()
+        {
+            var roles = new List<Role>()
+            {
+                new Role()
+                {
+                    Name = "User"
+                },
+                new Role()
+                {
+                    Name = "Manager"
+                },
+                new Role()
+                {
+                    Name = "Admin"
+                }
+            };
+            return roles;
+        }
+
         private IEnumerable<Resteurant> GetResteurants()
         {
             var resteurants = new List<Resteurant>()

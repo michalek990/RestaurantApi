@@ -26,12 +26,48 @@ namespace ResteurantApi.Controllers
           //  _mapper = mapper;
         //}
 
+
+
         public ResteurantController(IResteurantService resteurantService)
         {
 
             _resteurantService = resteurantService;
 
         }
+
+
+        [HttpPost]
+        public ActionResult CreateResteurant([FromBody] CreateResteurantDto dto)
+        {
+
+            var id = _resteurantService.Create(dto);
+
+            return Created($"/api/restaurant/{id}", null);
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<ResteurantDto>> GetAll()
+        {
+            //nowa wersja
+            var resteurantsDtos = _resteurantService.GetAll();
+
+            return Ok(resteurantsDtos);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Update([FromBody] UpdateResteurantDto dto, [FromRoute] int id)
+        {
+            // if (!ModelState.IsValid)
+            // {
+            //     return BadRequest(ModelState);
+            //  }
+
+            _resteurantService.Update(id, dto);
+
+            return Ok();
+
+        }
+
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
@@ -39,45 +75,8 @@ namespace ResteurantApi.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
-        public ActionResult Update([FromBody] UpdateResteurantDto dto, [FromRoute] int id)
-        {
-           // if (!ModelState.IsValid)
-           // {
-           //     return BadRequest(ModelState);
-          //  }
-
-           _resteurantService.Update(id, dto);
-
-           return Ok();
-
-        }
-
-        [HttpPost]
-        public ActionResult CreateResteurant([FromBody] CreateResteurantDto dto)
-        {
-          
-            
         
 
-            var id = _resteurantService.Create(dto);
-
-            return Created($"/api/restaurant/{id}", null);
-        }
-
-
-
-        [HttpGet]
-        public ActionResult<IEnumerable<ResteurantDto>> GetAll()
-        {
-            
-
-
-            //nowa wersja
-            var resteurantsDtos = _resteurantService.GetAll();
-
-            return Ok(resteurantsDtos);
-        }
         [HttpGet("{id}")]
         public ActionResult<ResteurantDto> Get([FromRoute] int id)
         {
