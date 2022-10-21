@@ -73,14 +73,7 @@ namespace ResteurantApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ResteurantDto>> GetAll()
         {
-            //var resteurantsDtos = resteurants.Select(r => new ResteurantDto()
-            //{
-            //   Name = r.Name,
-            //  Category = r.Category,
-            // City = r.Address.City
-            //});
-            //zwracamy do klinta listy resteuracji ale tylko konkretne dane
-            // var resteurantsDtos = _mapper.Map<List<ResteurantDto>>(resteurants);
+            
 
 
             //nowa wersja
