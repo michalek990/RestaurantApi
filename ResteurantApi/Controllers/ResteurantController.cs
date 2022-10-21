@@ -58,10 +58,7 @@ namespace ResteurantApi.Controllers
         {
           
             
-         //   if (!ModelState.IsValid)
-          //  {
-         //       return BadRequest(ModelState);
-         //   }
+        
 
             var id = _resteurantService.Create(dto);
 
