@@ -80,3 +80,6 @@ C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\bin\Debug\net5.0\Swashb
 C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\obj\Debug\net5.0\ResteurantApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Users\Michal\source\repos\ResteurantAPI\ResteurantApi\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll

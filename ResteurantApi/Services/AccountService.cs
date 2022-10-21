@@ -21,6 +21,8 @@ namespace ResteurantApi.Services
 
         public void RegisterUser(RegisterUserDto dto)
         {
+
+
             var newUser = new User()
             {
                 Email = dto.Email,
@@ -28,8 +30,8 @@ namespace ResteurantApi.Services
                 Nationality = dto.Nationality,
                 RoleId = dto.RoleId
             };
-            //hashoowanie hasła
 
+            //hashoowanie hasła
             var hashedPassword = _passwordHasher.HashPassword(newUser, dto.Password);
 
             newUser.PasswordHash = hashedPassword;

@@ -17,7 +17,7 @@ namespace ResteurantApi.Middleware
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             _stopwatch.Start();
-            next.Invoke(context);
+           await next.Invoke(context);
             _stopwatch.Stop();
 
             var elapeMilliseconds = _stopwatch.ElapsedMilliseconds;
