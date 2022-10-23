@@ -7,12 +7,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using ResteurantApi.Services;
 
 namespace ResteurantApi.Controllers
 {
     [Route("api/resteurant")]
     [ApiController]
+    [Authorize]
     public class ResteurantController : ControllerBase
     {
 
@@ -37,19 +40,24 @@ namespace ResteurantApi.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Manager,Admin")]
         public ActionResult CreateResteurant([FromBody] CreateResteurantDto dto)
         {
-
+            //PRZYPISANIE DO UTWORZONEJ RESTEURACJI ID TWORCY!!!!!  
+            var userId = int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
             var id = _resteurantService.Create(dto);
 
             return Created($"/api/restaurant/{id}", null);
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ResteurantDto>> GetAll()
+        //[Authorize(Policy = "HasNationality")]
+        //[Authorize(Policy = "Atleast20")]
+        [AllowAnonymous]
+        public ActionResult<IEnumerable<ResteurantDto>> GetAll([FromQuery]ResteurantQuery query)
         {
             //nowa wersja
-            var resteurantsDtos = _resteurantService.GetAll();
+            var resteurantsDtos = _resteurantService.GetAll(query);
 
             return Ok(resteurantsDtos);
         }
@@ -78,6 +86,7 @@ namespace ResteurantApi.Controllers
         
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public ActionResult<ResteurantDto> Get([FromRoute] int id)
         {
             var resteurants = _resteurantService.GetById(id);
