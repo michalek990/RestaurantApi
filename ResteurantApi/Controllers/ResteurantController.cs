@@ -51,9 +51,8 @@ namespace ResteurantApi.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Policy = "HasNationality")]
-        //[Authorize(Policy = "Atleast20")]
         [AllowAnonymous]
+
         public ActionResult<IEnumerable<ResteurantDto>> GetAll([FromQuery]ResteurantQuery query)
         {
             //nowa wersja
