@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResteurantApi.Entities;
 
 namespace ResteurantApi.Migrations
 {
     [DbContext(typeof(ResteurantDBContext))]
-    partial class ResteurantDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221023150611_autoryzacjaa")]
+    partial class autoryzacjaa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

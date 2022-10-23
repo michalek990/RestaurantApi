@@ -14,6 +14,10 @@ namespace ResteurantApi.Entities
         public string ContactEmail { get; set; }
         public string ContactNumber { get; set; }
 
+        //okreslenie id tworcy
+        public int? CreatedById { get; set; }
+        //okreslenie tworcy
+        public virtual User CreatedBy { get; set; }
 
         //referancja do tabeli z adresem, szukamy po id adresu
         public int AddressId { get; set; }
