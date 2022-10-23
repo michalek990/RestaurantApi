@@ -8,7 +8,7 @@ namespace ResteurantApi.Models.Validators
     public class ResteurantQueryValidator : AbstractValidator<ResteurantQuery>
     {
         private int[] allowedPageSizes = new[] { 5, 10, 15 };
-        private string[] allowedSortByColumnNames = {nameof(Resteurant.Name), nameof(Resteurant.Description), nameof(Resteurant.Category)};
+        private string[] allowedSortByColumnNames = {nameof(Resteurant.Name), nameof(Resteurant.Category), nameof(Resteurant.Description)};
 public ResteurantQueryValidator()
         {
             //walidacja pozwalajaca nam wyswietlac na stronie jedynie 5 10 lub 15 wynikow i musi byc wieksza niz 1 albo rowna 1
@@ -17,7 +17,7 @@ public ResteurantQueryValidator()
             {
                 if (!allowedPageSizes.Contains(value))
                 {
-                    context.AddFailure("PageSize", $"Page Size must be in [{string.Join(",", allowedPageSizes)}]");
+                    context.AddFailure("PageSize", $"PageSize must in [{string.Join(",", allowedPageSizes)}]");
                 }
             });
 
