@@ -104,12 +104,26 @@ namespace ResteurantApi
 
             //dodanie swaggera
             services.AddSwaggerGen();
-            
+
+            //mozliwosc ³¹czenia sie z frontendem
+            services.AddCors(options =>
+            {
+                options.AddPolicy("FrontendEndClient", builder =>
+                    builder.AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithOrigins(Configuration["AllowedOrigins"])
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ResteurantSeeder seeder)
         {
+            //pobieranie plikow statycznych
+            app.UseStaticFiles();
+            app.UseCors("FrontendEndClient");
+
+
             //dodanie seedera ktory wype³ni baze danych danymi poczatkowymi
             seeder.Seed();
             if (env.IsDevelopment())
