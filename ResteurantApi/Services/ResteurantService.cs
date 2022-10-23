@@ -1,19 +1,18 @@
 ﻿using System;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-
-using ResteurantApi.Entities;
-using ResteurantApi.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Claims;
-using AutoMapper.Configuration.Conventions;
-using Microsoft.AspNetCore.Authentication;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ResteurantApi.Authorization;
+using ResteurantApi.Entities;
 using ResteurantApi.Exceptions;
+using ResteurantApi.Models;
 
 namespace ResteurantApi.Services
 {
@@ -48,33 +47,28 @@ namespace ResteurantApi.Services
 
 
             //pobranie informacji o resteuracji z bazy danych
-            var resteurants = _dbContext
+            var restaurant = _dbContext
                 .Resteurants
                 .FirstOrDefault(r => r.Id == id);
 
-
-            if (resteurants == null)
-            {
-                throw new NotFoundException("Resteurant not found");
-
-            }
+            if (restaurant is null)
+                throw new NotFoundException("Restaurant not found");
 
 
-           var authorizationResult= _authorizationService.AuthorizeAsync(_uerContextService.User, resteurants,
+            var authorizationResult = _authorizationService.AuthorizeAsync(_uerContextService.User, restaurant,
                 new ResourceOperationRequirement(ResourceOperation.Update)).Result;
 
+            if (!authorizationResult.Succeeded)
+            {
+                throw new ForbidException();
+            }
 
-           if (!authorizationResult.Succeeded)
-           {
-               throw new ForbidException();
-           }
-
-            resteurants.Name = dto.Name;
-            resteurants.Description = dto.Description;
-            resteurants.HasDelivered = dto.HasDelivered;
+            restaurant.Name = dto.Name;
+            restaurant.Description = dto.Description;
+            restaurant.HasDelivered = dto.HasDelivered;
 
             _dbContext.SaveChanges();
-            
+
         }
 
         public ResteurantDto GetById(int id)
@@ -126,7 +120,6 @@ namespace ResteurantApi.Services
 
         public PageResult<ResteurantDto> GetAll(ResteurantQuery query)
         {
-            //szukanie resteuracji wedlug frazy
             var baseQuery = _dbContext
                 .Resteurants
                 .Include(r => r.Address)
@@ -136,7 +129,7 @@ namespace ResteurantApi.Services
                 .Contains(query.SearchPhrase.ToLower())));
 
             //sprwadzamy czy ktos podal jak ma byc sortowane
-            if (string.IsNullOrEmpty(query.SortBy))
+            if (!string.IsNullOrEmpty(query.SortBy))
             {
                 var collumnsSelector = new Dictionary<string, Expression<Func<Resteurant, object>>>
                 {
@@ -158,8 +151,8 @@ namespace ResteurantApi.Services
 
             //tutaj wszystkie wyniki przeliczamy na strony i elemanty na stronach
             //funkcja ta oblicza ilosc elemetnow na stronie i ilosc stron
-            var resteurants =  baseQuery
-                .Skip(query.PageSize*(query.PageNumber-1))
+            var resteurants = baseQuery
+                .Skip(query.PageSize * (query.PageNumber - 1))
                 .Take(query.PageSize)
                 .ToList();
 
